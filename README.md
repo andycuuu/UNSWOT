@@ -1,2 +1,0 @@
-# UNSWOT
-hello world
