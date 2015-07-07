@@ -1,0 +1,72 @@
+<head>
+  <title>UNSWOT</title>
+</head>
+
+<body>
+  <h2>UNSWOT Discussion Board({{incompleteCount}})</h2>
+  <div class="container">
+    <header>
+      <h1>UNSWOT Discussion One({{incompleteCount}})</h1>
+
+      <label class="hide-completed">
+        <input type="checkbox" checked="{{hideCompleted}}" />
+        Hide Completed Tasks
+      </label>
+      {{> loginButtons}}
+
+      {{#if currentUser}}
+        <form class="new-task">
+          <input type="text" name="text" placeholder="I want to talk about ..." />
+        </form>
+      {{/if}}
+    </header>
+
+    <ul>
+      {{#each tasks}}
+        {{> task}}
+      {{/each}}
+    </ul>
+
+    <header>
+      <h1>UNSWOT Discussion Two({{incompleteCount}})</h1>
+
+      <label class="hide-completed">
+        <input type="checkbox" checked="{{hideCompleted}}" />
+        Hide Completed Tasks
+      </label>
+
+      {{#if currentUser}}
+        <form class="new-task">
+          <input type="text" name="text" placeholder="I want to talk about ..." />
+        </form>
+      {{/if}}
+    </header>
+
+    <ul>
+      {{#each tasks}}
+        {{> task}}
+      {{/each}}
+    </ul>
+
+  </div>
+</body>
+
+<template name="task">
+  <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
+    <button class="delete">&times;</button>
+
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+
+	{{#if isOwner}}
+	  <button class="toggle-private">
+	    {{#if private}}
+	      Private
+	    {{else}}
+	      Public
+	    {{/if}}
+	  </button>
+	{{/if}}
+
+    <span class="text"><strong>{{username}}</strong> - {{text}}</span>
+  </li>
+</template>
